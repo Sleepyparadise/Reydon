@@ -1,9 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1e1b4b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="Interactive Singapore MOE Primary 2 to Primary 3 readiness game show covering Math, Science, English, and Chinese." />
   <title>P3 Superstar Showdown! 🌟</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
   <style>
     :root {
       --bg-grad-1: #1e1b4b;
@@ -23,15 +29,17 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       min-height: 100vh;
+      min-height: 100dvh;
       background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2));
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom)) 16px;
       color: var(--text-main);
     }
 
@@ -368,7 +376,7 @@
     <div class="hud-pill">⭐ <span id="scoreDisplay">0</span></div>
     <div class="hud-pill">🔥 <span id="streakDisplay">0</span> Streak</div>
     <div class="hud-pill">Mission <span id="qCounter">0/12</span></div>
-    <button class="sound-toggle" id="soundBtn" title="Toggle Sound">🔊</button>
+    <button class="sound-toggle" id="soundBtn" title="Toggle Sound" aria-label="Toggle Sound">🔊</button>
   </div>
   <div class="progress-bar-wrap">
     <div class="progress-bar-fill" id="progressBar"></div>
@@ -435,9 +443,20 @@
 </div>
 
 <script>
-  // Web Audio API Sound Effects (No external files needed!)
+  // Web Audio API Sound Effects (Self-contained, zero external assets)
   let soundEnabled = true;
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let audioCtx = null;
+
+  function getAudioCtx() {
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioContextClass) audioCtx = new AudioContextClass();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
 
   document.getElementById('soundBtn').addEventListener('click', () => {
     soundEnabled = !soundEnabled;
@@ -446,18 +465,20 @@
 
   function playTone(type) {
     if (!soundEnabled) return;
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    const ctx = getAudioCtx();
+    if (!ctx) return;
 
-    const now = audioCtx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    const now = ctx.currentTime;
     if (type === 'correct') {
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(523.25, now); // C5
-      osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
-      osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(659.25, now + 0.1);
+      osc.frequency.setValueAtTime(783.99, now + 0.2);
       gain.gain.setValueAtTime(0.2, now);
       gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
       osc.start(now);
@@ -482,7 +503,6 @@
     }
   }
 
-  // 12 Curated Singapore MOE P2 -> P3 Questions
   const questions = [
     // MATH (3)
     {
@@ -680,6 +700,7 @@
   }
 
   function startGame() {
+    getAudioCtx();
     currentIdx = 0;
     score = 0;
     streak = 0;
