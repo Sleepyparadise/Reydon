@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#1e1b4b" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="Interactive Singapore MOE Primary 2 to Primary 3 readiness game show with expanded question bank and Top Scoreboard." />
-  <title>P3 Superstar Showdown! 🌟</title>
+  <meta name="description" content="Interactive Singapore MOE Primary 2 to Primary 3 readiness game show with a 100-question bank and Top Scoreboard." />
+  <title>P3 Superstar Showdown! 🌟 (100-Question Edition)</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
   <style>
     :root {
@@ -507,7 +507,7 @@
   <div class="hud">
     <div class="hud-pill">⭐ <span id="scoreDisplay">0</span></div>
     <div class="hud-pill">🔥 <span id="streakDisplay">0</span></div>
-    <div class="hud-pill">Mission <span id="qCounter">0/16</span></div>
+    <div class="hud-pill">Mission <span id="qCounter">0/20</span></div>
     <button class="hud-btn" onclick="openLeaderboardScreen()">🏆 Top 10</button>
     <button class="sound-toggle" id="soundBtn" title="Toggle Sound" aria-label="Toggle Sound">🔊</button>
   </div>
@@ -517,10 +517,10 @@
 
   <!-- Welcome Screen -->
   <div class="screen active" id="startScreen">
-    <span class="badge-top">Singapore MOE P2 ➔ P3 Bridge • 36-Question Bank</span>
+    <span class="badge-top">Singapore MOE P2 ➔ P3 Bridge • 100-Question Bank</span>
     <h1>P3 Superstar Showdown! 🚀</h1>
     <p class="subtitle">
-      Every mission picks <strong>16 fresh challenges</strong> across Math, Science, English, and Chinese. Climb to #1 on the Top Scoreboard!
+      Every run draws <strong>20 fresh challenges</strong> (5 per subject) from a <strong>100-question bank</strong>. Climb to #1 on the Top Scoreboard!
     </p>
 
     <div class="player-input-group">
@@ -532,26 +532,26 @@
       <div class="subject-card">
         <span class="icon">🛫</span>
         <strong>Math Detective</strong>
-        <span>9 Challenges • 4-Digit & Tables</span>
+        <span>25 Challenges • 4-Digit & Tables</span>
       </div>
       <div class="subject-card">
         <span class="icon">🦁</span>
         <strong>Zoo Scientist</strong>
-        <span>9 Challenges • P3 Science Skills</span>
+        <span>25 Challenges • P3 Science Skills</span>
       </div>
       <div class="subject-card">
         <span class="icon">🪄</span>
         <strong>STELLAR Wizard</strong>
-        <span>9 Challenges • Synthesis & Cloze</span>
+        <span>25 Challenges • Synthesis & Cloze</span>
       </div>
       <div class="subject-card">
         <span class="icon">🏮</span>
         <strong>华文小侦探</strong>
-        <span>9 Challenges • 量词、关联词与理解</span>
+        <span>25 Challenges • 量词、关联词与理解</span>
       </div>
     </div>
 
-    <button class="btn-primary" onclick="startGame()">🎬 Start 16-Mission Showdown!</button>
+    <button class="btn-primary" onclick="startGame()">🎬 Start 20-Mission Showdown!</button>
     <button class="btn-secondary" onclick="openLeaderboardScreen()">🏆 View Top Scoreboard</button>
   </div>
 
@@ -571,7 +571,7 @@
       <span class="trophy-emoji" id="trophyEmoji">🏆</span>
       <span class="badge-top" id="rankBadge">P3 Grandmaster Explorer</span>
       <h1 id="resultTitle">Mission Accomplished!</h1>
-      <div class="score-big"><span id="finalScore">0</span> / 160 ⭐</div>
+      <div class="score-big"><span id="finalScore">0</span> / 200 ⭐</div>
       <p class="subtitle" id="resultMessage"></p>
     </div>
 
@@ -584,7 +584,7 @@
       <div id="resultLeaderboard"></div>
     </div>
 
-    <button class="btn-primary" onclick="startGame()">🔄 Play New Random Set (16 Questions)!</button>
+    <button class="btn-primary" onclick="startGame()">🔄 Play New Random Set (20 Questions)!</button>
     <button class="btn-secondary" onclick="showScreen('startScreen')">🏠 Change Explorer Name</button>
   </div>
 
@@ -596,7 +596,7 @@
 
     <div class="leaderboard-card">
       <div class="leaderboard-header">
-        <span>Top 10 Scores (Max 160 ⭐)</span>
+        <span>Top 10 Scores (Max 200 ⭐)</span>
         <button class="clear-btn" onclick="clearLeaderboard()">Reset Board</button>
       </div>
       <div id="standaloneLeaderboard"></div>
@@ -668,9 +668,9 @@
     }
   }
 
-  // EXPANDED 36-QUESTION BANK (9 per subject)
+  // FULL 100-QUESTION BANK (25 Math + 25 Science + 25 English + 25 Chinese)
   const questionBank = [
-    // ================= MATH (9) =================
+    // ================= MATH (25) =================
     {
       subject: "Math",
       tagText: "🛫 ROUND 1: MATH DETECTIVE",
@@ -761,8 +761,168 @@
       answer: 0,
       explanation: "2 kg = 2,000 g. Add 350 g to get 2,350 g!"
     },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Digit Value Detective: Don't confuse PLACE with VALUE!",
+      question: "In the number 7,943, what is the VALUE of the digit 9?",
+      options: ["900", "90", "9"],
+      answer: 0,
+      explanation: "The digit 9 is in the hundreds place, so its value is 900!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "8 Times Table Rocket: Octopuses have 8 arms each!",
+      question: "If 7 octopuses are swimming together, how many arms do they have in all?",
+      options: ["56 arms", "48 arms", "64 arms"],
+      answer: 0,
+      explanation: "7 × 8 = 56! (Tip: 8 × 8 = 64, minus one group of 8 = 56.)"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "9 Times Table Magic: Finger trick or clever subtraction!",
+      question: "What is 9 × 8?",
+      options: ["72", "63", "81"],
+      answer: 0,
+      explanation: "9 × 8 = 72! (10 × 8 = 80, minus 8 = 72.)"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Comparing 4-Digit Numbers: Line up the thousands first!",
+      question: "Which number is the GREATEST?",
+      options: ["6,109", "5,999", "6,091"],
+      answer: 0,
+      explanation: "Compare thousands: 6,109 and 6,091 beat 5,999. Then compare hundreds: 1 hundred > 0 hundreds, so 6,109 is greatest!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Division Sharing: Fair sharing at school!",
+      question: "48 stickers are shared equally among 6 children. How many stickers does each child get?",
+      options: ["8 stickers", "6 stickers", "9 stickers"],
+      answer: 0,
+      explanation: "48 ÷ 6 = 8 because 8 × 6 = 48!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Remainder Riddle: Not everything divides evenly!",
+      question: "29 cupcakes are packed into boxes of 4. How many cupcakes are left unpacked?",
+      options: ["1 cupcake", "2 cupcakes", "3 cupcakes"],
+      answer: 0,
+      explanation: "7 × 4 = 28 cupcakes fill 7 boxes, leaving 29 − 28 = 1 cupcake!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Ordering Fractions: Same denominator means compare the numerators!",
+      question: "Arrange these fractions from SMALLEST to GREATEST:  5/8,  2/8,  7/8",
+      options: ["2/8, 5/8, 7/8", "7/8, 5/8, 2/8", "5/8, 2/8, 7/8"],
+      answer: 0,
+      explanation: "When the bottom number (denominator) is the same, smaller top number means smaller share: 2/8 < 5/8 < 7/8!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Whole as a Fraction: How many slices make a whole?",
+      question: "A pie is cut into 6 equal parts. How many sixths make 1 whole pie?",
+      options: ["6/6 (6 sixths)", "1/6 (1 sixth)", "3/6 (3 sixths)"],
+      answer: 0,
+      explanation: "All 6 out of 6 equal parts (6/6) make 1 whole!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Metres & Centimetres: Measuring a ribbon!",
+      question: "A ribbon is 3 m 25 cm long. How many centimetres is that?",
+      options: ["325 cm", "35 cm", "3,025 cm"],
+      answer: 0,
+      explanation: "3 m = 300 cm. 300 cm + 25 cm = 325 cm!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Volume in Litres & Millilitres: 1 litre = 1,000 ml!",
+      question: "A water jug holds 1 litre 500 ml of juice. How many millilitres is that?",
+      options: ["1,500 ml", "150 ml", "10,500 ml"],
+      answer: 0,
+      explanation: "1 L = 1,000 ml, so 1,000 ml + 500 ml = 1,500 ml!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Angles & Right Angles: Look at the corner of a book!",
+      question: "How many right angles (90°) are there inside a rectangle?",
+      options: ["4 right angles", "2 right angles", "3 right angles"],
+      answer: 0,
+      explanation: "Every corner of a rectangle is a right angle—4 corners means 4 right angles!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Perimeter Walk: Walking all the way around a square park!",
+      question: "Each side of a square garden is 5 m long. What is the distance (perimeter) all the way around it?",
+      options: ["20 m", "25 m", "10 m"],
+      answer: 0,
+      explanation: "A square has 4 equal sides: 5 m + 5 m + 5 m + 5 m = 20 m!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Mental Subtraction Shortcut: Subtracting near-hundreds!",
+      question: "What is 1,200 − 198?",
+      options: ["1,002", "1,098", "998"],
+      answer: 0,
+      explanation: "1,200 − 200 = 1,000. Since 198 is 2 less than 200, add 2 back: 1,000 + 2 = 1,002!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Bar Graph Reading: Each star icon stands for 10 books!",
+      question: "If a bar graph shows 6 star icons for English storybooks, how many books is that?",
+      options: ["60 books", "16 books", "6 books"],
+      answer: 0,
+      explanation: "Each icon represents 10 books, so 6 × 10 = 60 books!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "24-Hour Clock Intro: Evening flight departure!",
+      question: "In 24-hour time, what is 6:30 PM written as?",
+      options: ["1830", "0630", "1630"],
+      answer: 0,
+      explanation: "Add 12 hours to PM times after noon: 6 + 12 = 18, giving 1830!"
+    },
+    {
+      subject: "Math",
+      tagText: "🛫 ROUND 1: MATH DETECTIVE",
+      tagClass: "tag-math",
+      story: "Two-Step Shopping Trip: Buy two items and find the total!",
+      question: "A storybook costs $12 and a board game costs $19. You pay with a $50 note. How much change do you get?",
+      options: ["$19", "$31", "$21"],
+      answer: 0,
+      explanation: "Total cost: $12 + $19 = $31. Change: $50 − $31 = $19!"
+    },
 
-    // ================= SCIENCE (9) =================
+    // ================= SCIENCE (25) =================
     {
       subject: "Science",
       tagText: "🦁 ROUND 2: ZOO SCIENTIST",
@@ -853,8 +1013,168 @@
       answer: 0,
       explanation: "The Digestive System (mouth, gullet, stomach, small and large intestines) digests our food!"
     },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Amphibian Check: Frogs love pond habitats!",
+      question: "Why is a frog classified as an amphibian rather than a reptile?",
+      options: ["It has moist skin and can live on land and in water", "It has dry scales and breathes only through lungs", "It has fins and gills throughout its life"],
+      answer: 0,
+      explanation: "Amphibians usually have moist skin and live both on land and in water; reptiles have dry scales!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Cockroach vs. Butterfly Life Cycle: Not all insects have 4 stages!",
+      question: "How many stages are in a cockroach's life cycle?",
+      options: ["3 stages (Egg ➔ Nymph ➔ Adult)", "4 stages (Egg ➔ Larva ➔ Pupa ➔ Adult)", "2 stages (Egg ➔ Adult)"],
+      answer: 0,
+      explanation: "A cockroach has a 3-stage life cycle: Egg ➔ Nymph (looks like a small adult without wings) ➔ Adult!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Stem Transport: Celery stalks in coloured water!",
+      question: "What is one main function of the stem in a plant?",
+      options: ["Transporting water and nutrients between roots and leaves", "Absorbing sunlight to make food", "Producing seeds for reproduction"],
+      answer: 0,
+      explanation: "The stem supports the plant and transports water, mineral salts, and food to different parts!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Non-Magnetic Metals Trap: Careful—not every metal sticks to a magnet!",
+      question: "Which of these materials is NOT magnetic even though it is a metal?",
+      options: ["Aluminium / Gold / Copper", "Iron", "Steel"],
+      answer: 0,
+      explanation: "Only a few metals (like iron, steel, nickel, and cobalt) are magnetic. Aluminium, gold, and copper are non-magnetic!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Property of Materials: Choosing material for a car windshield!",
+      question: "Why is glass chosen for a car windscreen instead of wood?",
+      options: ["Glass is transparent (allows light to pass through clearly)", "Glass is flexible and bends easily", "Glass cannot break when dropped"],
+      answer: 0,
+      explanation: "Glass is transparent so the driver can see clearly through it!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Flowering vs. Non-Flowering Plants: Spot the difference!",
+      question: "Which plant is a NON-flowering plant?",
+      options: ["Bird's nest fern", "Hibiscus plant", "Sunflower"],
+      answer: 0,
+      explanation: "Ferns and mosses are non-flowering plants (they reproduce using spores, not flowers/seeds)."
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Respiratory System: Taking a deep breath in fresh air!",
+      question: "Which organ is the main organ of the human respiratory system where gas exchange happens?",
+      options: ["Lungs", "Stomach", "Heart"],
+      answer: 0,
+      explanation: "Air enters through the nose/mouth, travels down the windpipe, and reaches the lungs!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Circulatory System: Pumping blood around the body!",
+      question: "Which organ pumps blood to all parts of the body?",
+      options: ["Heart", "Brain", "Liver"],
+      answer: 0,
+      explanation: "The heart is the muscular pump of the circulatory system!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Living Things Respond: Touch-me-not plant (Mimosa pudica)!",
+      question: "When you touch the leaves of a mimosa plant and they fold up, what characteristic of living things is shown?",
+      options: ["Living things respond to changes around them", "Living things need water to float", "Living things stay the same size"],
+      answer: 0,
+      explanation: "Folding leaves when touched shows that living things respond to stimuli/changes in their surroundings!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Bacteria Fact Check: Are all bacteria harmful?",
+      question: "Which statement about bacteria is TRUE in P3 Science?",
+      options: ["Some bacteria are useful (like making yoghurt), while some cause illness", "All bacteria are visible to the naked eye", "All bacteria are plants"],
+      answer: 0,
+      explanation: "Bacteria are microscopic organisms—some are helpful (e.g., in digestion or food) and some can cause disease."
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Making a Magnet: Stroke method with a bar magnet!",
+      question: "If you stroke an iron nail repeatedly in ONE direction with a bar magnet, what can happen?",
+      options: ["The iron nail can become a temporary magnet", "The iron nail turns into plastic", "The iron nail melts"],
+      answer: 0,
+      explanation: "Stroking an iron/steel object in one direction with a magnet can magnetise it!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Material Strength Test: Hanging weights from a string!",
+      question: "If a string snaps under a lighter load than another string, it is less...",
+      options: ["Strong", "Transparent", "Waterproof"],
+      answer: 0,
+      explanation: "Strength refers to how much pulling/heavy load a material can support without breaking!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Fish Breathing: Underwater adaptation!",
+      question: "How do fish take in dissolved oxygen underwater?",
+      options: ["Through their gills", "Through a nose above water", "Through dry scales"],
+      answer: 0,
+      explanation: "Fish breathe using gills, which take in oxygen dissolved in water!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Mammal Feature: What makes a mammal special?",
+      question: "Most mammals give birth to their young alive and feed them with...",
+      options: ["Milk", "Nectar", "Rainwater"],
+      answer: 0,
+      explanation: "Mammals have hair/fur (mostly) and feed their young milk produced by the mother!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Toy Car vs. Real Dog: Moving isn't enough!",
+      question: "A remote-control car can move and make noise, so why is it a NON-living thing?",
+      options: ["It cannot grow, reproduce, or need food on its own", "It is made of metal", "It has wheels"],
+      answer: 0,
+      explanation: "Movement alone does not make something alive—living things grow, reproduce, and need food, water, and air!"
+    },
+    {
+      subject: "Science",
+      tagText: "🦁 ROUND 2: ZOO SCIENTIST",
+      tagClass: "tag-science",
+      story: "Skeletal System: Protecting vital organs!",
+      question: "Which part of the skeletal system protects the brain?",
+      options: ["Skull", "Ribcage", "Backbone"],
+      answer: 0,
+      explanation: "The skull forms a hard bony shell that protects the brain (while the ribcage protects the heart and lungs)!"
+    },
 
-    // ================= ENGLISH (9) =================
+    // ================= ENGLISH (25) =================
     {
       subject: "English",
       tagText: "🪄 ROUND 3: STELLAR WIZARD",
@@ -893,11 +1213,11 @@
       subject: "English",
       tagText: "🪄 ROUND 3: STELLAR WIZARD",
       tagClass: "tag-english",
-      story: "Subject-Verb Agreement Trap: Watch out for tricky singular subjects!",
+      story: "Subject-Verb Agreement Trap: Watch out for tricky subjects!",
       question: "Choose the right verb: 'Neither Sharlotte nor her brothers _______ afraid of the roller coaster.'",
       options: ["are", "is", "was"],
       answer: 0,
-      explanation: "With 'Neither...nor', the verb agrees with the noun closer to it ('her brothers' = plural), so we use 'are'!"
+      explanation: "With 'Neither...nor', the verb agrees with the closer subject ('her brothers' = plural), so we use 'are'!"
     },
     {
       subject: "English",
@@ -949,8 +1269,172 @@
       answer: 0,
       explanation: "'Yours' is a possessive pronoun that stands alone without a noun after it!"
     },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Irregular Past Tense: Not every verb adds '-ed'!",
+      question: "What is the past tense of 'catch' in: 'Last Saturday, Dad _______ a huge fish at the jetty.'?",
+      options: ["caught", "catched", "catch"],
+      answer: 0,
+      explanation: "The past tense of 'catch' is 'caught'!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Adverbs of Manner: How did the action happen?",
+      question: "Choose the correct adverb: 'The pupils listened _______ to the zookeeper's safety rules.'",
+      options: ["attentively", "loudly-ish", "careless"],
+      answer: 0,
+      explanation: "'Attentively' is an adverb describing how they listened—paying close attention!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Question Tags / Interrogatives: Asking the right question!",
+      question: "Fill in the blank: '_______ did you leave your umbrella on the MRT train?'",
+      options: ["Where", "Who", "Whose"],
+      answer: 0,
+      explanation: "'Where' asks about a place or location (the MRT train)!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Simile Sparks: Paint vivid pictures in composition!",
+      question: "Complete the simile: 'After running three laps around the field, he was as tired as a _______.'",
+      options: ["dog", "feather", "breeze"],
+      answer: 0,
+      explanation: "'As tired as a dog' is a classic simile for feeling completely worn out!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Each / Every Rule: Singular trap!",
+      question: "Choose the correct verb: 'Each of the participants _______ a medal at the end of the race.'",
+      options: ["receives", "receive", "are receiving"],
+      answer: 0,
+      explanation: "'Each of...' takes a singular verb ('receives')!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Phrasal Verbs: Two words, one clear meaning!",
+      question: "Fill in the blank: 'Please _______ your rubbish before leaving the picnic spot.'",
+      options: ["pick up", "give up", "look for"],
+      answer: 0,
+      explanation: "'Pick up' means to lift or collect items like litter so the park stays clean!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Homophones Check: Sounds the same, different spelling and meaning!",
+      question: "Choose the right word: 'The wind blew the leaves _______ the garden wall.'",
+      options: ["over", "none", "n/a"],
+      answer: 0,
+      explanation: "'Over' shows movement above/across the wall!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Homophones Pair: 'Their', 'There', or 'They're'?",
+      question: "Fill in the blank: '_______ going to the Botanic Gardens right after breakfast.'",
+      options: ["They're", "Their", "There"],
+      answer: 0,
+      explanation: "'They're' is short for 'They are'!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Adjective Order / Choice: Strong descriptive words!",
+      question: "Which word means 'extremely frightened or scared'?",
+      options: ["terrified", "delighted", "curious"],
+      answer: 0,
+      explanation: "'Terrified' means very frightened—great for suspense in a story!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Plural Nouns: Tricky plurals!",
+      question: "What is the plural of 'leaf'?",
+      options: ["leaves", "leafs", "leavs"],
+      answer: 0,
+      explanation: "Words ending in '-f' often change '-f' to '-ves' in the plural: leaf ➔ leaves!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Time Connectors: Sequencing a story!",
+      question: "Fill in the blank: 'First, wash your hands. _______, dry them with a clean towel.'",
+      options: ["Next", "Because", "Although"],
+      answer: 0,
+      explanation: "'Next' helps show the sequence of steps in order!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Antonym Hunt: Opposite meanings!",
+      question: "Which word is the OPPOSITE of 'generous'?",
+      options: ["stingy", "kind", "helpful"],
+      answer: 0,
+      explanation: "'Generous' means willing to share/give freely; 'stingy' means unwilling to share or spend."
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Articles (a / an / the): Listen to the starting sound!",
+      question: "Fill in the blank: 'It took _______ hour to drive from the city to the nature reserve.'",
+      options: ["an", "a", "many"],
+      answer: 0,
+      explanation: "'Hour' starts with a silent 'h' and a vowel sound ('our'), so we use 'an hour'!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Sentence Synthesis ('so'): Showing result!",
+      question: "Join these two sentences with 'so': 'It started raining heavily. We opened our umbrellas.'",
+      options: [
+        "It started raining heavily, so we opened our umbrellas.",
+        "We opened our umbrellas, so it started raining heavily.",
+        "It started raining heavily, so we closed our umbrellas."
+      ],
+      answer: 0,
+      explanation: "Rain caused the result of opening umbrellas, so 'so' links cause to result!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Context Clue Reading: Guess the meaning from clues around the word!",
+      question: "In 'The parched soil cracked because it had not rained for weeks,' what does 'parched' mean?",
+      options: ["very dry", "very wet", "very cold"],
+      answer: 0,
+      explanation: "No rain for weeks makes soil 'very dry'—context clues help decode new P3 words!"
+    },
+    {
+      subject: "English",
+      tagText: "🪄 ROUND 3: STELLAR WIZARD",
+      tagClass: "tag-english",
+      story: "Continuous Tense Clue ('while'): Two actions happening at the same time!",
+      question: "Fill in the blank: 'While I _______ my homework, my little brother was building a Lego tower.'",
+      options: ["was doing", "do", "will do"],
+      answer: 0,
+      explanation: "'While' with a past action ('was building') pairs nicely with past continuous 'was doing'!"
+    },
 
-    // ================= CHINESE (9) =================
+    // ================= CHINESE (25) =================
     {
       subject: "Chinese",
       tagText: "🏮 ROUND 4: 华文小侦探",
@@ -1040,6 +1524,166 @@
       options: ["三点水（氵）", "单人旁（亻）", "木字旁（木）"],
       answer: 0,
       explanation: "“游”和“河”都和水有关，所以都是三点水旁（氵）！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十关：量词再挑战 — 树木和建筑物用什么量词？",
+      question: "选出正确的量词填空：学校门前有一（   ）大树，操场旁有一（   ）教学楼。",
+      options: ["棵  /  座", "支  /  条", "粒  /  双"],
+      answer: 0,
+      explanation: "树木用“棵”（一棵大树），高大的建筑物用“座”（一座教学楼）！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十一关：近义词小侦探 (Synonyms) — 意思相近的词语！",
+      question: "“高兴”的近义词是哪一个？",
+      options: ["开心", "生气", "难过"],
+      answer: 0,
+      explanation: "“高兴”和“开心”都有快乐、愉悦的意思！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十二关：礼貌用语小天使 — 日常生活好礼貌！",
+      question: "不小心撞到别人时，我们应该有礼貌地说：",
+      options: ["“对不起，我不是故意的。”", "“你挡住我的路了！”", "“没关系，快走开。”"],
+      answer: 0,
+      explanation: "做错了事或不小心碰到别人，主动说“对不起”是有礼貌的表现！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十三关：形近字辨析 — “喝”与“渴”！",
+      question: "选出正确的字填空：跑完步以后，我又累又（   ），真想（   ）一杯凉水。",
+      options: ["渴  /  喝", "喝  /  渴", "哥  /  歌"],
+      answer: 0,
+      explanation: "口“渴”需要喝水（三点水“氵”和口渴有关）；“喝”水用嘴巴（口字旁“口”）！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十四关：标点符号小医生 — 句末标点用对了没有？",
+      question: "“今天的晚霞真美啊（   ）” 括号里应该填什么标点符号？",
+      options: ["！", "？", "、"],
+      answer: 0,
+      explanation: "表达强烈的赞叹或感情时，句末用感叹号“！”！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十五关：反义词接龙 — “快”的反义词！",
+      question: "乌龟爬得很（   ），兔子跑得很快。横线上应该填：",
+      options: ["慢", "高", "远"],
+      answer: 0,
+      explanation: "“快”的反义词是“慢”（速度慢）！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十六关：四字词语积累 — 形容景色优美！",
+      question: "形容花草树木很多、景色非常美丽的词语是：",
+      options: ["百花齐放", "垂头丧气", "手忙脚乱"],
+      answer: 0,
+      explanation: "“百花齐放”形容各种花朵一起开放，春天景色很美！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十七关：猜字谜小高手 — 动脑筋猜一猜！",
+      question: "“一棵树，在田边，看看字，再想一想。” 是哪个字？",
+      options: ["休", "林", "森"],
+      answer: 0,
+      explanation: "单人旁“亻”加上“木”，就是“休”（休息）！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十八关：量词搭配 — 一双鞋子、一把雨伞！",
+      question: "选出正确的量词填空：出门前，妈妈递给我一（   ）雨伞。",
+      options: ["把", "本", "头"],
+      answer: 0,
+      explanation: "有把手的器具常用“把”，比如“一把雨伞”、“一把剪刀”！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第十九关：阅读理解 — 爱护环境！",
+      question: "“大家把吃完的果皮和包装纸丢进垃圾桶，公园变得干干净净。” 这段话告诉我们要：",
+      options: ["保持环境清洁，不乱丢垃圾", "在公园里摘花", "把垃圾留在地上"],
+      answer: 0,
+      explanation: "把垃圾丢进垃圾桶，才能保持环境整洁！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第二十关：假设关联词 — “如果……就……”！",
+      question: "选出最合适的关联词：（   ）明天不下雨，（   ）我们就去动物园。",
+      options: ["如果 …… 就 ……", "虽然 …… 但是 ……", "因为 …… 所以 ……"],
+      answer: 0,
+      explanation: "“如果……就……”表示假设的情况和可能的结果！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第二十一关：词语搭配 — 形容心情！",
+      question: "听到好消息时，大家心里感到非常（   ）。",
+      options: ["兴奋", "害怕", "紧张"],
+      answer: 0,
+      explanation: "听到好消息通常会感到开心、兴奋！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第二十二关：反义词挑战 — “新”的反义词！",
+      question: "这件校服虽然是（   ）的，但洗得很干净。",
+      options: ["旧", "大", "长"],
+      answer: 0,
+      explanation: "“新”的反义词是“旧”！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第二十三关：动词选择 — 读书写字！",
+      question: "每天晚上，我都会先做完功课，再（   ）一会儿故事书。",
+      options: ["看", "吃", "穿"],
+      answer: 0,
+      explanation: "“看书”或“读书”是最自然的搭配！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第二十四关：四字词语 — 守时好习惯！",
+      question: "每天按时到校、不迟到，是一种（   ）的好习惯。",
+      options: ["守时", "懒惰", "马虎"],
+      answer: 0,
+      explanation: "“守时”指遵守时间，准时到达！"
+    },
+    {
+      subject: "Chinese",
+      tagText: "🏮 ROUND 4: 华文小侦探",
+      tagClass: "tag-chinese",
+      story: "第二十五关：阅读理解 — 团结合作！",
+      question: "“同学们分工合作，很快就把教室打扫干净了。” “分工合作”的意思是：",
+      options: ["大家分开做不同的工作，互相配合", "一个人做完所有工作", "大家都不做工"],
+      answer: 0,
+      explanation: "“分工合作”就是每个人负责一部分工作，一起把事情做好！"
     }
   ];
 
@@ -1069,14 +1713,14 @@
     return copy;
   }
 
-  // Pick 4 random questions per subject (16 total) & shuffle options
+  // Pick 5 random questions per subject (20 total from 100-question bank) & shuffle options
   function buildSessionQuestions() {
     const subjects = ["Math", "Science", "English", "Chinese"];
     let session = [];
 
     subjects.forEach(subj => {
       const pool = questionBank.filter(q => q.subject === subj);
-      const selected = shuffleArray(pool).slice(0, 4);
+      const selected = shuffleArray(pool).slice(0, 5);
 
       selected.forEach(q => {
         const correctText = q.options[q.answer];
@@ -1102,7 +1746,7 @@
   function updateHUD() {
     document.getElementById('scoreDisplay').textContent = score;
     document.getElementById('streakDisplay').textContent = streak;
-    const total = activeQuestions.length || 16;
+    const total = activeQuestions.length || 20;
     document.getElementById('qCounter').textContent = `${Math.min(currentIdx + 1, total)}/${total}`;
     const pct = (currentIdx / total) * 100;
     document.getElementById('progressBar').style.width = `${pct}%`;
@@ -1219,7 +1863,6 @@
       date: dateStr
     });
 
-    // Sort highest score first; tie-breaker is most recent
     list.sort((a, b) => b.score - a.score || b.id - a.id);
     const top10 = list.slice(0, 10);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(top10));
@@ -1281,12 +1924,12 @@
     document.getElementById('finalScore').textContent = score;
 
     let badgeTitle = 'P3 Rising Star';
-    if (score >= 130) {
+    if (score >= 160) {
       badgeTitle = 'P3 Grandmaster Explorer';
       document.getElementById('trophyEmoji').textContent = '🏆';
       document.getElementById('resultTitle').textContent = `Unstoppable, ${playerName}!`;
       document.getElementById('resultMessage').textContent = 'You crushed Math, Science, English, and Chinese! Primary 3 is going to be a breeze!';
-    } else if (score >= 90) {
+    } else if (score >= 110) {
       badgeTitle = 'Junior P3 Cadet';
       document.getElementById('trophyEmoji').textContent = '🚀';
       document.getElementById('resultTitle').textContent = `Awesome Job, ${playerName}!`;
@@ -1299,16 +1942,15 @@
 
     document.getElementById('rankBadge').textContent = badgeTitle;
 
-    // Save to Top Scoreboard and render Top 5 on results screen
     saveScoreToLeaderboard(playerName, score, badgeTitle);
     renderLeaderboardHTML('resultLeaderboard', 5);
 
     const breakdown = document.getElementById('breakdownList');
     breakdown.innerHTML = `
-      <div class="breakdown-row"><span>🛫 Math Detective</span><span>${subjectScores.Math} / 40 ⭐</span></div>
-      <div class="breakdown-row"><span>🦁 Zoo Scientist</span><span>${subjectScores.Science} / 40 ⭐</span></div>
-      <div class="breakdown-row"><span>🪄 STELLAR Wizard</span><span>${subjectScores.English} / 40 ⭐</span></div>
-      <div class="breakdown-row"><span>🏮 华文小侦探</span><span>${subjectScores.Chinese} / 40 ⭐</span></div>
+      <div class="breakdown-row"><span>🛫 Math Detective</span><span>${subjectScores.Math} / 50 ⭐</span></div>
+      <div class="breakdown-row"><span>🦁 Zoo Scientist</span><span>${subjectScores.Science} / 50 ⭐</span></div>
+      <div class="breakdown-row"><span>🪄 STELLAR Wizard</span><span>${subjectScores.English} / 50 ⭐</span></div>
+      <div class="breakdown-row"><span>🏮 华文小侦探</span><span>${subjectScores.Chinese} / 50 ⭐</span></div>
     `;
   }
 </script>
